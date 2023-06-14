@@ -16,13 +16,13 @@ import com.example.radiofranceapp.domain.model.SimpleBrand
 @Composable
 fun BrandListItem(
     brand: SimpleBrand,
-    onItemClick: (SimpleBrand) -> Unit
+    onClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
-            .clickable { onItemClick(brand) },
+            .clickable { onClick() },
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(

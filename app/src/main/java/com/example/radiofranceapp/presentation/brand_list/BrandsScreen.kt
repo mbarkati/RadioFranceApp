@@ -47,8 +47,8 @@ fun BrandsScreen(
                     items(state.brands) { brand ->
                         BrandListItem(
                             brand = brand,
-                            onItemClick = {
-                                navController.navigate(Screen.Brands.route + "/${brand.id}")
+                            onClick = {
+                                navController.navigate("${Screen.Shows.route}/${brand.id}")
                             }
                         )
                     }

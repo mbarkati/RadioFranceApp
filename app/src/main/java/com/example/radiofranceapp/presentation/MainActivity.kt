@@ -6,10 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.radiofranceapp.common.Constants
+import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
 import com.example.radiofranceapp.presentation.brand_list.BrandsScreen
 import com.example.radiofranceapp.presentation.show_list.ShowsScreen
 import com.example.radiofranceapp.presentation.show_list.ShowsViewModel
@@ -34,7 +37,10 @@ class MainActivity : ComponentActivity() {
                             BrandsScreen(navController)
                         }
                         composable(
-                            route = Screen.Shows.route + "/{${Constants.BRAND_ID_ARGUMENT}}"
+                            route = "${Screen.Shows.route}/{${BRAND_ID_ARGUMENT}}",
+                            arguments = listOf(navArgument(BRAND_ID_ARGUMENT) {
+                                type = NavType.StringType
+                            })
                         ) {
                             val viewModel = hiltViewModel<ShowsViewModel>()
                             ShowsScreen(
