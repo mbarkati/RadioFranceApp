@@ -49,7 +49,7 @@ fun ShowItem(show: Shows.ShowEdge.Show) {
                     .background(
                         brush = Brush.linearGradient(
                             colors = listOf(
-                                Color.Green,
+                                Color.Red,
                                 Color.Blue
                             ),
                             start = Offset(0f, Float.POSITIVE_INFINITY),
