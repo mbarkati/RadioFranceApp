@@ -16,6 +16,7 @@ import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
 import com.example.radiofranceapp.presentation.brand_list.BrandsScreen
 import com.example.radiofranceapp.presentation.show_list.ShowsScreen
 import com.example.radiofranceapp.presentation.show_list.ShowsViewModel
+import com.example.radiofranceapp.presentation.ui.theme.MyTheme
 import com.example.radiofranceapp.presentation.ui.theme.RadioFranceAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,30 +25,28 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RadioFranceAppTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.Brands.route
+            MyTheme {
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.Brands.route
+                ) {
+                    composable(
+                        route = Screen.Brands.route
                     ) {
-                        composable(
-                            route = Screen.Brands.route
-                        ) {
-                            BrandsScreen(navController)
-                        }
-                        composable(
-                            route = "${Screen.Shows.route}/{${BRAND_ID_ARGUMENT}}",
-                            arguments = listOf(navArgument(BRAND_ID_ARGUMENT) {
-                                type = NavType.StringType
-                            })
-                        ) {
-                            val viewModel = hiltViewModel<ShowsViewModel>()
-                            ShowsScreen(
-                                viewModel = viewModel,
-                                onPaginate = viewModel::getShows
-                            )
-                        }
+                        BrandsScreen(navController)
+                    }
+                    composable(
+                        route = "${Screen.Shows.route}/{${BRAND_ID_ARGUMENT}}",
+                        arguments = listOf(navArgument(BRAND_ID_ARGUMENT) {
+                            type = NavType.StringType
+                        })
+                    ) {
+                        val viewModel = hiltViewModel<ShowsViewModel>()
+                        ShowsScreen(
+                            viewModel = viewModel,
+                            onPaginate = viewModel::getShows
+                        )
                     }
                 }
             }

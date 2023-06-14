@@ -1,5 +1,7 @@
 package com.example.radiofranceapp.presentation.brand_list
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.radiofranceapp.common.Resource
@@ -13,8 +15,8 @@ class BrandsViewModel @Inject constructor(
     private val getBrandsUseCase: GetBrandsUseCase
 ): ViewModel() {
 
-    private val _state = MutableStateFlow(BrandListState())
-    val state = _state.asStateFlow()
+    private val _state = mutableStateOf(BrandListState())
+    val state: State<BrandListState> = _state
 
     init {
         getBrands()

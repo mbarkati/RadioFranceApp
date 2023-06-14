@@ -1,5 +1,7 @@
 package com.example.radiofranceapp.presentation.show_list
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +11,7 @@ import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
 import com.example.radiofranceapp.common.Constants.UNKNOWN_STATION
 import com.example.radiofranceapp.common.Resource
 import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
+import com.example.radiofranceapp.presentation.brand_list.BrandListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -20,8 +23,8 @@ class ShowsViewModel @Inject constructor(
 ): ViewModel() {
 
 
-    private val _state = MutableStateFlow(ShowListState())
-    val state = _state.asStateFlow()
+    private val _state = mutableStateOf(ShowListState())
+    val state: State<ShowListState> = _state
     val station = savedStateHandle.get<String>(BRAND_ID_ARGUMENT) ?: UNKNOWN_STATION
 
     init {
