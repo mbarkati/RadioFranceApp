@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.radiofranceapp.R
 import com.example.radiofranceapp.domain.model.SimpleBrand
-import com.example.radiofranceapp.presentation.ui.theme.graySurface
 
 @Composable
 fun BrandListItem(
@@ -27,7 +26,7 @@ fun BrandListItem(
 ) {
         Card(
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 8.dp)
+                .padding(vertical = 8.dp)
                 .fillMaxWidth(),
             elevation = 2.dp,
             shape = RoundedCornerShape(corner = CornerSize(16.dp)),

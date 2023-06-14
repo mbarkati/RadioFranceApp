@@ -26,7 +26,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 import com.example.radiofranceapp.R
@@ -36,7 +35,7 @@ import com.example.radiofranceapp.domain.model.Shows
 fun ShowItem(show: Shows.ShowEdge.Show) {
     Box(
         modifier = Modifier
-            .padding(end = 8.dp, start = 8.dp, bottom = 6.dp),
+            .padding(vertical = 8.dp),
         contentAlignment = Alignment.Center
     ) {
         Card(
@@ -69,7 +68,7 @@ fun ShowItem(show: Shows.ShowEdge.Show) {
                         modifier = Modifier
                             .width(24.dp)
                             .height(24.dp),
-                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        painter = painterResource(id = R.drawable.play_logo),
                         contentDescription = null
                     )
                     Spacer(modifier = Modifier.width(6.dp))
