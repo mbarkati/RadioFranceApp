@@ -70,6 +70,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:1.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("org.mockito:mockito-core:4.1.0")
 
 
     //Apollo for API

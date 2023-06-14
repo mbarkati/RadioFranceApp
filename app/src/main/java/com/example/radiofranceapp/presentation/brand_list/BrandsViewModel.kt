@@ -22,7 +22,7 @@ class BrandsViewModel @Inject constructor(
         getBrands()
     }
 
-    private fun getBrands(){
+     fun getBrands(){
         getBrandsUseCase().onEach { result ->
             when(result) {
                 is Resource.Success -> {

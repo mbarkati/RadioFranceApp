@@ -1,0 +1,112 @@
+package com.example.radiofranceapp.presentation.show_list
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.SavedStateHandle
+import com.apollographql.apollo3.api.Optional
+import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
+import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
+import com.example.radiofranceapp.common.Resource
+import com.example.radiofranceapp.domain.model.Shows
+import com.example.radiofranceapp.domain.repo.ShowClient
+import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnitRunner
+import java.util.*
+
+@ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
+class ShowsViewModelTest {
+
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var getShowsUseCase: GetShowsUseCase
+
+    @Mock
+    private lateinit var showClient: ShowClient
+
+    private lateinit var viewModel: ShowsViewModel
+
+    private val station = "example_station"
+
+    @Before
+    fun setup() {
+        val savedStateHandle = SavedStateHandle().apply {
+            set(BRAND_ID_ARGUMENT, station)
+        }
+        viewModel = ShowsViewModel(getShowsUseCase, savedStateHandle)
+    }
+
+    @Test
+    fun `getShows should update state with success`() = runBlockingTest {
+        // Mock data
+        val shows = Shows(
+            listOf(
+                Shows.ShowEdge(
+                    cursor = "1",
+                    node = Shows.ShowEdge.Show(
+                        id = "1",
+                        title = "Show 1",
+                        url = "https://example.com/show1",
+                        standFirst = "First show"
+                    )
+                ),
+                Shows.ShowEdge(
+                    cursor = "2",
+                    node = Shows.ShowEdge.Show(
+                        id = "2",
+                        title = "Show 2",
+                        url = "https://example.com/show2",
+                        standFirst = "Second show"
+                    )
+                ),
+                Shows.ShowEdge(
+                    cursor = "3",
+                    node = Shows.ShowEdge.Show(
+                        id = "3",
+                        title = "Show 3",
+                        url = "https://example.com/show3",
+                        standFirst = "Third show"
+                    )
+                )
+            )
+        )
+
+        val successResource = Resource.Success(shows)
+        `when`(getShowsUseCase.invoke(station, Optional.present(ITEMS_LIMIT), Optional.absent())).thenReturn(flowOf(successResource))
+
+        // Call the method
+        viewModel.getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
+
+        // Assert the state
+        assertEquals(shows, viewModel.state.value.shows)
+        assertEquals(null, viewModel.state.value.error)
+        assertEquals(false, viewModel.state.value.isLoading)
+    }
+
+    @Test
+    fun `getShows should update state with error`() = runBlockingTest {
+        // Mock data
+        val errorMessage = "An unexpected error occurred"
+        val errorResource = Resource.Error<Shows>(errorMessage)
+        `when`(getShowsUseCase.invoke(station, Optional.present(ITEMS_LIMIT), Optional.absent())).thenReturn(flowOf(errorResource))
+
+        // Call the method
+        viewModel.getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
+
+        // Assert the state
+        assertEquals(null, viewModel.state.value.shows)
+        assertEquals(errorMessage, viewModel.state.value.error)
+        assertEquals(false, viewModel.state.value.isLoading)
+    }
+}
