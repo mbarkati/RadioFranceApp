@@ -18,13 +18,14 @@ import androidx.navigation.NavController
 import com.apollographql.apollo3.api.Optional
 import com.example.radiofranceapp.common.Constants
 import com.example.radiofranceapp.domain.model.Shows
+import com.example.radiofranceapp.presentation.Screen
+import com.example.radiofranceapp.presentation.brand_list.components.BrandListItem
 
 
 @Composable
 fun ShowsScreen(
-    viewModel: ShowsViewModel = hiltViewModel(),
-    onPaginate: (Optional<Int?>, Optional<String?>) -> Unit,
-    ) {
+    viewModel: ShowsViewModel = hiltViewModel()
+) {
     val state = viewModel.state.value
     Box(modifier = Modifier.fillMaxSize()) {
         if(state.isLoading) {
@@ -32,13 +33,10 @@ fun ShowsScreen(
                 modifier = Modifier.align(Alignment.Center)
             )
         } else {
-            val infiniteListState = rememberLazyListState()
             state.shows?.let {
                 ShowsList(
                     state = state,
-                    infiniteListState = infiniteListState,
                     shows = it,
-                    onPaginate = onPaginate
                 )
             }
 
@@ -49,43 +47,35 @@ fun ShowsScreen(
 @Composable
 fun ShowsList(
     state: ShowListState,
-    infiniteListState: LazyListState,
     shows: Shows,
-    onPaginate: (Optional<Int?>, Optional<String?>) -> Unit
 ) {
-    LazyColumn(
-        state = infiniteListState,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        items(shows.edges) { showEdge ->
-            ShowItem(show = showEdge.node)
-        }
-        if (state.isLoading) {
-            item {
-                ProgressIndicator()
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        if(state.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center)
+            )
+        } else {
+            if(state.error.isNotBlank()) {
+                Text(
+                    text = state.error,
+                    color = MaterialTheme.colors.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center)
+                )
+            } else {
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(shows.edges) { showEdge ->
+                        ShowItem(show = showEdge.node)
+                    }
+                }
             }
         }
     }
-    if (infiniteListState.isScrolledToTheEnd() && !state.isLoading) {
-        onPaginate(
-            Optional.present(Constants.ITEMS_LIMIT),
-            Optional.present(shows.edges.last().cursor)
-        )
-    }
+    
 }
 
-fun LazyListState.isScrolledToTheEnd() =
-    layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
-
-@Composable
-fun ProgressIndicator() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator()
-    }
-}
 

@@ -44,8 +44,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         val viewModel = hiltViewModel<ShowsViewModel>()
                         ShowsScreen(
-                            viewModel = viewModel,
-                            onPaginate = viewModel::getShows
+                            viewModel = viewModel
                         )
                     }
                 }
