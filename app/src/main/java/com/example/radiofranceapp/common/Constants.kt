@@ -8,5 +8,4 @@ object Constants {
 
     const val ITEMS_LIMIT = 100
     const val BRAND_ID_ARGUMENT = "brandId"
-    const val UNKNOWN_STATION = "UNKNOWN__"
 }

@@ -8,10 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
 import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
 import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
-import com.example.radiofranceapp.common.Constants.UNKNOWN_STATION
 import com.example.radiofranceapp.common.Resource
 import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
-import com.example.radiofranceapp.presentation.brand_list.BrandListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -25,7 +23,7 @@ class ShowsViewModel @Inject constructor(
 
     private val _state = mutableStateOf(ShowListState())
     val state: State<ShowListState> = _state
-    val station = savedStateHandle.get<String>(BRAND_ID_ARGUMENT) ?: UNKNOWN_STATION
+    val station = savedStateHandle.get<String>(BRAND_ID_ARGUMENT) ?: ""
 
     init {
         getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
