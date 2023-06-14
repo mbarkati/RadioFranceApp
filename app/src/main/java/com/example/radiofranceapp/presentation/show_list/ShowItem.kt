@@ -52,8 +52,6 @@ fun ShowItem(show: Shows.ShowEdge.Show) {
                                 Color.Red,
                                 Color.Blue
                             ),
-                            start = Offset(0f, Float.POSITIVE_INFINITY),
-                            end = Offset(Float.POSITIVE_INFINITY, 0f)
                         )
                     )
             ) {
@@ -66,8 +64,8 @@ fun ShowItem(show: Shows.ShowEdge.Show) {
                 ) {
                     Image(
                         modifier = Modifier
-                            .width(24.dp)
-                            .height(24.dp),
+                            .width(22.dp)
+                            .height(22.dp),
                         painter = painterResource(id = R.drawable.play_logo),
                         contentDescription = null
                     )
@@ -85,8 +83,7 @@ fun ShowItem(show: Shows.ShowEdge.Show) {
                                 style = MaterialTheme.typography.caption,
                                 color = Color.White,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                modifier = Modifier.horizontalScroll(rememberScrollState())
+                                overflow = TextOverflow.Ellipsis
                             )
                         }
                     }
