@@ -7,8 +7,6 @@ import com.example.radiofranceapp.data.repo.BrandRepositoryImpl
 import com.example.radiofranceapp.data.repo.ShowRepositoryImpl
 import com.example.radiofranceapp.domain.repo.BrandRepository
 import com.example.radiofranceapp.domain.repo.ShowRepository
-import com.example.radiofranceapp.domain.usecases.GetBrandsUseCase
-import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,22 +31,11 @@ object AppModule {
         return BrandRepositoryImpl(apolloClient)
     }
 
-    @Provides
-    @Singleton
-    fun provideGetBrandsUseCase(brandRepository: BrandRepository): GetBrandsUseCase {
-        return GetBrandsUseCase(brandRepository)
-    }
 
     @Provides
     @Singleton
     fun provideShowsClient(apolloClient: ApolloClient): ShowRepository {
         return ShowRepositoryImpl(apolloClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetShowsUseCase(showRepository: ShowRepository): GetShowsUseCase {
-        return GetShowsUseCase(showRepository)
     }
 
 

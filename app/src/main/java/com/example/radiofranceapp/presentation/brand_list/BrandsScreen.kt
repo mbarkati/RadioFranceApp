@@ -16,7 +16,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.radiofranceapp.R
 import com.example.radiofranceapp.presentation.Screen
-import com.example.radiofranceapp.presentation.brand_list.components.BrandListItem
 
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.radiofranceapp.presentation.brand_list.components
+package com.example.radiofranceapp.presentation.brand_list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

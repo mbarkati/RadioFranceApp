@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RadioFranceApp</string>
+    <string name="app_name">Radio France App</string>
     <string name="stations">Liste des stations radio</string>
     <string name="stations_descprition">Cliquez sur une station pour afficher la liste des émissions correspondantes.</string>
     <string name="shows">Liste des émissions de la station selectionnée</string>
