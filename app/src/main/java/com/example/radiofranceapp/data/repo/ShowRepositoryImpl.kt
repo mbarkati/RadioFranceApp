@@ -5,12 +5,12 @@ import com.apollographql.apollo3.api.Optional
 import com.example.ShowsQuery
 import com.example.radiofranceapp.data.mappers.toShows
 import com.example.radiofranceapp.domain.model.Shows
-import com.example.radiofranceapp.domain.repo.ShowClient
+import com.example.radiofranceapp.domain.repo.ShowRepository
 import com.example.type.StationsEnum
 
-class ApolloShowClient(
+class ShowRepositoryImpl(
     private val apolloClient: ApolloClient
-): ShowClient {
+): ShowRepository {
 
     override suspend fun getShows(
         station: String, limit: Optional<Int?>, after: Optional<String?>

@@ -7,7 +7,7 @@ import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
 import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
 import com.example.radiofranceapp.common.Resource
 import com.example.radiofranceapp.domain.model.Shows
-import com.example.radiofranceapp.domain.repo.ShowClient
+import com.example.radiofranceapp.domain.repo.ShowRepository
 import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -20,7 +20,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
-import java.util.*
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -33,7 +32,7 @@ class ShowsViewModelTest {
     private lateinit var getShowsUseCase: GetShowsUseCase
 
     @Mock
-    private lateinit var showClient: ShowClient
+    private lateinit var showRepository: ShowRepository
 
     private lateinit var viewModel: ShowsViewModel
 
