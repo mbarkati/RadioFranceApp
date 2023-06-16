@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.Optional
 import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
-import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
 import com.example.radiofranceapp.common.Resource
 import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +25,7 @@ class ShowsViewModel @Inject constructor(
     val station = savedStateHandle.get<String>(BRAND_ID_ARGUMENT) ?: ""
 
     init {
-        getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
+        getShows(Optional.present(100), Optional.absent())
     }
 
 

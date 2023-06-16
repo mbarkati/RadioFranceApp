@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.SavedStateHandle
 import com.apollographql.apollo3.api.Optional
 import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
-import com.example.radiofranceapp.common.Constants.ITEMS_LIMIT
 import com.example.radiofranceapp.common.Resource
 import com.example.radiofranceapp.domain.model.Shows
 import com.example.radiofranceapp.domain.repo.ShowRepository
@@ -82,10 +81,10 @@ class ShowsViewModelTest {
         )
 
         val successResource = Resource.Success(shows)
-        `when`(getShowsUseCase.invoke(station, Optional.present(ITEMS_LIMIT), Optional.absent())).thenReturn(flowOf(successResource))
+        `when`(getShowsUseCase.invoke(station, Optional.present(100), Optional.absent())).thenReturn(flowOf(successResource))
 
         // Call the method
-        viewModel.getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
+        viewModel.getShows(Optional.present(100), Optional.absent())
 
         // Assert the state
         assertEquals(shows, viewModel.state.value.shows)
@@ -98,10 +97,10 @@ class ShowsViewModelTest {
         // Mock data
         val errorMessage = "An unexpected error occurred"
         val errorResource = Resource.Error<Shows>(errorMessage)
-        `when`(getShowsUseCase.invoke(station, Optional.present(ITEMS_LIMIT), Optional.absent())).thenReturn(flowOf(errorResource))
+        `when`(getShowsUseCase.invoke(station, Optional.present(100), Optional.absent())).thenReturn(flowOf(errorResource))
 
         // Call the method
-        viewModel.getShows(Optional.present(ITEMS_LIMIT), Optional.absent())
+        viewModel.getShows(Optional.present(100), Optional.absent())
 
         // Assert the state
         assertEquals(null, viewModel.state.value.shows)

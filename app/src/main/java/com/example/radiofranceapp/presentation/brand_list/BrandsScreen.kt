@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.radiofranceapp.R
-import com.example.radiofranceapp.presentation.Screen
+import com.example.radiofranceapp.presentation.navigation.Screen
 
 
 @Composable
