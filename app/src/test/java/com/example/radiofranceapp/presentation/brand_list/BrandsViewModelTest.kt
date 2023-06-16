@@ -5,7 +5,7 @@ import com.example.radiofranceapp.domain.model.SimpleBrand
 import com.example.radiofranceapp.domain.usecases.GetBrandsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -28,7 +28,7 @@ class BrandsViewModelTest {
     }
 
     @Test
-    fun `getBrands failed updates state with error message`() = runBlockingTest {
+    fun `getBrands failed updates state with error message`() = runTest {
         // Arrange
         val errorMessage = "An error occurred"
         val errorResource = Resource.Error<List<SimpleBrand>>(errorMessage)
@@ -45,7 +45,7 @@ class BrandsViewModelTest {
     }
 
     @Test
-    fun `getBrands succeeded updates state`() = runBlockingTest {
+    fun `getBrands succeeded updates state`() = runTest {
         // Arrange
         val brands = listOf(
             SimpleBrand("1", "Brand 1", "Description 1"),

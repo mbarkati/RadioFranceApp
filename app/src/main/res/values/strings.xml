@@ -4,5 +4,4 @@
     <string name="stations_descprition">Cliquez sur une station pour afficher la liste des émissions correspondantes.</string>
     <string name="shows">Liste des émissions de la station selectionnée</string>
     <string name="shows_descprition">Cliquez sur une émission pour obtenir plus d informations ou écouter la diffusion en direct.</string>
-    <string name="graphql_x_token">84c107b0-22f0-4958-883d-381edaa54174</string>
 </resources>

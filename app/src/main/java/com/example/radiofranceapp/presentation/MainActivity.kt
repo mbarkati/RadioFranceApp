@@ -3,7 +3,6 @@ package com.example.radiofranceapp.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +11,6 @@ import androidx.navigation.navArgument
 import com.example.radiofranceapp.common.Constants.BRAND_ID_ARGUMENT
 import com.example.radiofranceapp.presentation.brand_list.BrandsScreen
 import com.example.radiofranceapp.presentation.show_list.ShowsScreen
-import com.example.radiofranceapp.presentation.show_list.ShowsViewModel
 import com.example.radiofranceapp.presentation.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,10 +36,7 @@ class MainActivity : ComponentActivity() {
                             type = NavType.StringType
                         })
                     ) {
-                        val viewModel = hiltViewModel<ShowsViewModel>()
-                        ShowsScreen(
-                            viewModel = viewModel
-                        )
+                        ShowsScreen()
                     }
                 }
             }

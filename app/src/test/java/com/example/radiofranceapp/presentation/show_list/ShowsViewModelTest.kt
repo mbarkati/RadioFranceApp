@@ -11,7 +11,7 @@ import com.example.radiofranceapp.domain.repo.ShowRepository
 import com.example.radiofranceapp.domain.usecases.GetShowsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -47,7 +47,7 @@ class ShowsViewModelTest {
     }
 
     @Test
-    fun `getShows should update state with success`() = runBlockingTest {
+    fun `getShows should update state with success`() = runTest {
         // Mock data
         val shows = Shows(
             listOf(
@@ -94,7 +94,7 @@ class ShowsViewModelTest {
     }
 
     @Test
-    fun `getShows should update state with error`() = runBlockingTest {
+    fun `getShows should update state with error`() = runTest {
         // Mock data
         val errorMessage = "An unexpected error occurred"
         val errorResource = Resource.Error<Shows>(errorMessage)
