@@ -3,15 +3,15 @@
 RadioFranceApp is a two-screen application that allows users to browse available brands and view the shows associated with each brand.
 
 ## Screens
-
+![Brands Screen](https://github.com/mbarkati/RadioFranceApp/assets/65324644/5c4a8352-396a-46ff-8559-bec842ac1f33)  ![Shows Screen](https://github.com/mbarkati/RadioFranceApp/assets/65324644/88a67bdb-5ad9-4851-982d-13003cfd0f63)
 ### Brand Screen
 The first screen displays a list of available brands. Users can tap on a brand to navigate to the second screen.
-![Brands Screen](https://github.com/mbarkati/RadioFranceApp/assets/65324644/5c4a8352-396a-46ff-8559-bec842ac1f33)
+
 
 
 ### Shows Screen
 The second screen shows the shows associated with the selected brand. Users can view details of each show, such as title, description, and release date.
-![image](https://github.com/mbarkati/RadioFranceApp/assets/65324644/88a67bdb-5ad9-4851-982d-13003cfd0f63)
+
 
 
 ## Libraries Used
